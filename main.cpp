@@ -3,9 +3,9 @@ Author: Cordell Hurst
 Course : CSCI 335 Software Design and Analysis III
 Instructor: Pavel Shostak
 Assignment 02
-22 October 2018
+24 October 2018
 This program is tasked to takes random integers and inserts into an AVL tree and a BST.
-Instertions are 1k, 100k and 1m nodes. the duration of the insertions are timed and compared.
+Insertions are 1k, 10k, 100k and 1m nodes. the duration of the insertions are timed and compared.
 */
 
 #include <iostream>
