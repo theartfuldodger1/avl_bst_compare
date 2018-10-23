@@ -1,21 +1,11 @@
-
 /*
 Author: Cordell Hurst
 Course : CSCI 335 Software Design and Analysis III
-Instructor: Stewart Weiss
+Instructor: Pavel Shostak
 Assignment 02
-30 March 2017
-This program is tasked to read the input file, parse its lines, construct a Type object for each line
-and make the calls to the Type_Collection class to insert Type objects into the collection. As each line of data
-is read, its 41 fields are separated and the proper subset of nine of them are used to construct the
-Type object. Type_Collection, uses the "spc_common/Type_id" pair as a unique key for inserting
-the Type objects into the encapsulated AVL Type. The TypeCollection also keeps track of the names of
-all species that are stored and in which boroughs the Types are located using <set>. AVL holds all
-complete Types from the census. Any blank feilds that have been declared blank or incorrectly may
-invalidate that line of data. the user is asked to provide a species name/Type type in as few as one word
-or as many as three. the users input is processed and the species that match or have individual consecutive
-words that match are counted and that information is displayed for the user. Data comes from NYC Open Data
-and can be visualized @ www.cloudred.com/labprojects/nycTypes
+22 October 2018
+This program is tasked to takes random integers and inserts into an AVL tree and a BST. 
+Instertions are 1k, 100k and 1m nodes. the duration of the insertions are timed and compared.
 */
 
 #ifndef __AVL_H__
@@ -26,10 +16,11 @@ and can be visualized @ www.cloudred.com/labprojects/nycTypes
 #include <list>
 
 #include "Type.h"
+#include "BST.h"
 
 using namespace std;
 
-class AVL
+class AVL : public BST
 {
 private:
 	struct Node
@@ -67,11 +58,11 @@ private:
 	const Type& find(const Type &TypeIn, Node *NodeIn) const;
 	const Type& findMin(Node* NodeIn) const;
 	const Type& findMax(Node* NodeIn) const;
-
+	/*
 	void displayInOrder(Node *) const;
 	void displayPreOrder(Node *) const;
 	void displayPostOrder(Node *) const;
-
+	*/
 public:
 	AVL();                     // default
 	AVL(const AVL &);		// copy constructor

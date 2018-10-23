@@ -1,21 +1,11 @@
-
 /*
 Author: Cordell Hurst
 Course : CSCI 335 Software Design and Analysis III
-Instructor: Stewart Weiss
+Instructor: Pavel Shostak
 Assignment 02
-30 March 2017
-This program is tasked to read the input file, parse its lines, construct a Type object for each line
-and make the calls to the Type_Collection class to insert Type objects into the collection. As each line of data
-is read, its 41 fields are separated and the proper subset of nine of them are used to construct the
-Type object. Type_Collection, uses the "spc_common/Type_id" pair as a unique key for inserting
-the Type objects into the encapsulated AVL Type. The TypeCollection also keeps track of the names of
-all species that are stored and in which boroughs the Types are located using <set>. AVL holds all
-complete Types from the census. Any blank feilds that have been declared blank or incorrectly may
-invalidate that line of data. the user is asked to provide a species name/Type type in as few as one word
-or as many as three. the users input is processed and the species that match or have individual consecutive
-words that match are counted and that information is displayed for the user. Data comes from NYC Open Data
-and can be visualized @ www.cloudred.com/labprojects/nycTypes
+22 October 2018
+This program is tasked to takes random integers and inserts into an AVL tree and a BST. 
+Instertions are 1k, 100k and 1m nodes. the duration of the insertions are timed and compared.
 */
 
 #include <iostream>
@@ -39,10 +29,11 @@ AVL::AVL(const AVL &Tree)
 //destructor
 AVL::~AVL()
 {
+
 	makeEmpty(root);
 	delete root;
 }
-
+/*
 // Search methods:
 //Recursive. returns as a Type. string comparison
 const Type& AVL::find(const Type &x) const
@@ -59,6 +50,8 @@ const Type& AVL::findMax() const
 {
 	return findMax(root);
 }
+*/
+/*
 //Search for all matches of a particular species based on string comparison
 //uses two algorithms, one an iterative search/find and the other an iterative
 //in-order traversal modified to start with the object found by the first algo
@@ -110,6 +103,8 @@ list<Type> AVL::findallmatches(const Type &x) const
 	}
 	return Outgoing;
 }
+*/
+/*
 // Displaying the Type contents:
 void AVL::print(ostream& out) const
 {
@@ -130,7 +125,7 @@ void AVL::printType(Node *NodeIn, ostream& out) const
 		printType(NodeIn->right, out);
 	}
 }
-
+*/
 // Type modifiers:
 //empties avl Type
 void AVL::clear()// empty the Type
@@ -176,18 +171,19 @@ void AVL::makeEmpty(Node *&NodeIn)
 	}
 	NodeIn = nullptr;
 }
+/*
 //Printing method that demonstrates 3 different print algorithms. This is called by disabled internally
 //displayInOrder
 //displayPreOrder
 //displayPostOrder
 void AVL::printAll()
 {
-	//this->displayInOrder(root);
-	//cout << "Print In Order Complete\n";
-	//this->displayPreOrder(root);
-	//cout << "Print Pre Order Complete\n";
-	//this->displayPostOrder(root);
-	//cout << "Print Post Order Complete\n";
+	this->displayInOrder(root);
+	cout << "Print In Order Complete\n";
+	this->displayPreOrder(root);
+	cout << "Print Pre Order Complete\n";
+	this->displayPostOrder(root);
+	cout << "Print Post Order Complete\n";
 }
 //Recursive printing methods:
 void AVL::displayInOrder(Node *nodein) const
@@ -217,6 +213,7 @@ void AVL::displayPostOrder(Node *nodein) const
 		cout << nodein->NodeElement << endl;
 	}
 }
+*/
 //Recursive find() Returns Type object if found. otherwise empty Type
 const Type& AVL::find(const Type &TypeIn, Node *NodeIn) const
 {
