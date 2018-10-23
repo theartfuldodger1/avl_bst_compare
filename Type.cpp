@@ -48,19 +48,20 @@ ostream& operator<< (ostream & os, const Type & t)
 	return os;
 }
 //This returns true if and only if the two Types passed to it have identical digit members.
-//This can differ from operator== because one can be allowed to ignore a secondary key 
+//This could differ from operator== because the other can be allowed to ignore a secondary key 
 bool samename(const Type & Type1, const Type & Type2)
 {
 	int digit1 = Type1.digit;
 	int digit2 = Type2.digit;
+
 	if (digit1 == digit2)
 		return true;
 
 	return false;
 }
 //This returns true if and only the digit member of the first Type object is smaller than
-//that of the second as strings.This differs from operator< because it ignores the Type_id. (case
-//insensitive). For example, myType.follows("mimosa") is true if myType.digit =="pine"
+//that of the second.This is redundant to operator< because it can be modified to ignore
+//a secondary key
 bool islessname(const Type & Type1, const Type & Type2)
 {
 	int digit1 = Type1.digit;
@@ -76,20 +77,3 @@ int Type::getDigit()
 {
 	return digit;
 }
-/*
-//This returns the digit of the Type.
-string Type::common_name()
-{
-	return digit;
-}
-//This returns the name of the borough in which the Type is located.
-string Type::borough_name()
-{
-	return boroname;
-}
-//This returns the value of the Type_dbh member.
-double Type::diameter()
-{
-	return Type_dbh;
-}
-*/
