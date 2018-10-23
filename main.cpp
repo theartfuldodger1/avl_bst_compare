@@ -68,7 +68,15 @@ void goSwitch()
 					removeOutput(myBST, myAVL, randomVec);
 				}
 				break;
-				case 2: //run 100k
+				case 2: //run 1k
+				{
+					vector<int> randomVec(10000, -1);
+					insertIntoVector(randomVec);
+					insertOutput(myBST, myAVL, randomVec);
+					removeOutput(myBST, myAVL, randomVec);
+				}
+				break;
+				case 3: //run 100k
 				{
 					
 					vector<int> randomVec(100000, -1);
@@ -77,7 +85,7 @@ void goSwitch()
 					removeOutput(myBST, myAVL, randomVec);
 				}
 				break;
-				case 3: //run 1M
+				case 4: //run 1M
 				{
 					vector<int> randomVec(1000000, -1);
 					insertIntoVector(randomVec);
@@ -85,13 +93,13 @@ void goSwitch()
 					removeOutput(myBST, myAVL, randomVec);
 				}
 				break;
-				case 4: //Quit
+				case 5: //Quit
 				{
 					cout << "Bye!" << endl;
 				}
 				break;
 			}
-	}while(param != 4);
+	}while(param != 5);
 }
 void insertIntoVector(vector<int> &rVector)
 {
@@ -109,9 +117,10 @@ void initializationMenu()
 	cout << setw(33) << setfill(' ') << "Initialization Menu"
 		<< "\n\t------------------------------"
 		<< "\n\t  1. Run 1k random numbers"
-		<< "\n\t  2. Run 100k random numbers"
-		<< "\n\t  3. Run 1M random numbers"
-		<< "\n\t  4. Quit"
+		<< "\n\t  2. Run 10k random numbers"
+		<< "\n\t  3. Run 100k random numbers"
+		<< "\n\t  4. Run 1M random numbers"
+		<< "\n\t  5. Quit"
 		<< "\n\n\t==>> ";
 }
 

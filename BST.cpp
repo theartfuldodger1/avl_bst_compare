@@ -139,7 +139,6 @@ void BST::remove(const Type& x)// remove element x
 	remove(x, root);
 }
 
-
 //PRIVATE RECURSIVE FUNCTIONS
 //Copy constructor accessed by regular copy constructor
 BST::Node* BST::clone(Node *NodeIn) const
@@ -269,65 +268,6 @@ void BST::remove(const Type &TypeIn, Node *&NodeIn)
 	}
 	//balance(NodeIn);
 }
-/*
-//Type Adjustment functions. All BST nodes created with height info to facilitate
-//Balances BST Type, keeps order integrity
-void BST::balance(Node *&NodeIn)
-{
-	if (NodeIn == nullptr)
-		return;
-	if (height(NodeIn->left) - height(NodeIn->right) > ALLOWED_IMBALANCE)
-	{
-		if (height(NodeIn->left->left) >= height(NodeIn->left->right))
-			rotateLL(NodeIn);
-		else
-			doubleWithLeftChild(NodeIn);
-	}
-	else
-	{
-		if (height(NodeIn->right) - height(NodeIn->left) > ALLOWED_IMBALANCE)
-		{
-			if (height(NodeIn->right->right) >= height(NodeIn->right->left))
-				rotateRR(NodeIn);
-			else
-				doubleWithRightChild(NodeIn);
-		}
-	}
-	NodeIn->height = max(height(NodeIn->left), height(NodeIn->right)) + 1;
-}
-//Rotate left
-void BST::rotateLL(Node *&NodeIn)//rotateWithLeftchild
-{
-	Node *tempnode = NodeIn->left;
-	NodeIn->left = tempnode->right;
-	tempnode->right = NodeIn;
-	NodeIn->height = max(height(NodeIn->left), height(NodeIn->right)) + 1;
-	tempnode->height = max(height(tempnode->left), NodeIn->height) + 1;
-	NodeIn = tempnode;
-}
-//Rotate right
-void BST::rotateRR(Node *&NodeIn)//rotateWithRightchild
-{
-	Node *tempnode = NodeIn->right;
-	NodeIn->right = tempnode->left;
-	tempnode->left = NodeIn;
-	NodeIn->height = max(height(NodeIn->right), height(NodeIn->left)) + 1;
-	tempnode->height = max(height(tempnode->right), NodeIn->height) + 1;
-	NodeIn = tempnode;
-}
-//Double rotation, calls RL
-void BST::doubleWithLeftChild(Node *&NodeIn)
-{
-	rotateRR(NodeIn->left);
-	rotateLL(NodeIn);
-}
-//Double Rotation, calls LR
-void BST::doubleWithRightChild(Node *&NodeIn)
-{
-	rotateLL(NodeIn->right);
-	rotateRR(NodeIn);
-}
-*/
 //Other
 //Returns height of BST node for rotations and balance
 int BST::height(Node *NodeIn) const
