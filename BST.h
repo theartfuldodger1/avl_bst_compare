@@ -42,7 +42,7 @@ private:
 	static const int ALLOWED_IMBALANCE = 1;
 
 	int height(Node *NodeIn) const;
-	int max(int, int); //returns greater of 2 numbers or returns either if equal
+	int max(int, int);//returns greater of 2 numbers or returns either if equal
 
 	void insert(const Type &TypeIn, Node *&NodeIn);
 	void makeEmpty(Node *&NodeIn);
@@ -58,7 +58,7 @@ private:
 	void displayPostOrder(Node *) const;
 
 public:
-	BST();                     // default
+	BST();                  // default
 	BST(const BST &);		// copy constructor
 	~BST();					// destructor
 

@@ -35,17 +35,17 @@ BST::~BST()
 }
 
 // Search methods:
-//Recursive. returns as a Type. string comparison
+//Recursive. returns as a Type. comparison
 const Type& BST::find(const Type &x) const
 {
 	return find(x, root);
 }
-//Recursive. Returns min based on string comparison
+//Recursive. Returns min based on comparison
 const Type& BST::findMin() const
 {
 	return findMin(root);
 }
-//Recursive. Returns max based on string comparison
+//Recursive. Returns max based on comparison
 const Type& BST::findMax() const
 {
 	return findMax(root);
@@ -53,7 +53,7 @@ const Type& BST::findMax() const
 //Search for all matches of a particular species based on string comparison
 //uses two algorithms, one an iterative search/find and the other an iterative
 //in-order traversal modified to start with the object found by the first algo
-//and push the found objects into a list. The in-order traversal uses a stack
+//and push the found objects into a list. The in-order traversal uses a stack.
 //returns a list of Types
 list<Type> BST::findallmatches(const Type &x) const
 {
@@ -76,7 +76,7 @@ list<Type> BST::findallmatches(const Type &x) const
 	}
 
 	int i = 0;
-	while (!done)//modified iterative in-order traversal using a stack
+	while (!done)//modified iteractive in-order traversal using a stack
 	{
 		if (current != nullptr)
 		{
@@ -105,9 +105,7 @@ list<Type> BST::findallmatches(const Type &x) const
 void BST::print(ostream& out) const
 {
 	if (root == nullptr)
-	{
 		out << "Empty Type.\n";
-	}
 	else
 		printType(root, out);
 }
@@ -123,7 +121,7 @@ void BST::printType(Node *NodeIn, ostream& out) const
 }
 
 // Type modifiers:
-//empties BST Type
+//empties BST
 void BST::clear()// empty the Type
 {
 	makeEmpty(root);
@@ -147,13 +145,9 @@ void BST::remove(const Type& x)// remove element x
 BST::Node* BST::clone(Node *NodeIn) const
 {
 	if (NodeIn == nullptr)
-	{
 		return nullptr;
-	}
 	else
-	{
 		return new Node{ NodeIn->NodeElement, clone(NodeIn->left), clone(NodeIn->right), NodeIn->height };
-	}
 }
 //donish
 //Internal recursive delete

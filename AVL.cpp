@@ -16,16 +16,17 @@ Instertions are 1k, 100k and 1m nodes. the duration of the insertions are timed 
 
 using namespace std;
 
-// default
+//default
 AVL::AVL()
 {
 	root = NULL;
 }
-// copy constructor
+//copy constructor
 AVL::AVL(const AVL &Tree)
 {
 	root = clone(Tree.root);
 }
+
 //destructor
 AVL::~AVL()
 {
@@ -151,13 +152,9 @@ void AVL::remove(const Type& x)// remove element x
 AVL::Node* AVL::clone(Node *NodeIn) const
 {
 	if (NodeIn == nullptr)
-	{
 		return nullptr;
-	}
 	else
-	{
 		return new Node{ NodeIn->NodeElement, clone(NodeIn->left), clone(NodeIn->right), NodeIn->height };
-	}
 }
 //donish
 //Internal recursive delete
@@ -254,7 +251,9 @@ void AVL::insert(const Type &TypeIn, Node *&NodeIn)
 	else if (NodeIn->NodeElement < TypeIn)
 		insert(TypeIn, NodeIn->right);
 	else
+	{
 		//Duplicate; do nothing
+	}
 		balance(NodeIn);
 }
 //Recursive remove w/ balance call

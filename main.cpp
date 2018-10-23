@@ -18,30 +18,23 @@ Instertions are 1k, 100k and 1m nodes. the duration of the insertions are timed 
 #include "BST.h"
 using namespace std;
 
-void goSwitch(/*BST&, AVL &*/);
+void goSwitch();
 void initializationMenu();
 void failCheck(istream &cin);
-void insertOutput(BST &myBST, AVL &myAVL, vector<int> &, int call);
-void removeOutput(BST &myBST, AVL &myAVL, vector<int> &, int call);
-void insertIntoVector(vector<int> &randomVecIn);
-void insertIntoBST(vector<int> &randomVecIn, BST &tree);
-void insertIntoAVL(vector<int> &randomVecIn, AVL &tree);
+void insertIntoVector(vector<int> &rVector);
+void insertOutput(BST &myBST, AVL &myAVL, vector<int> &);
+void removeOutput(BST &myBST, AVL &myAVL, vector<int> &);
 
 int main(/*int argc, char* argv[]*/)
 {
-
-
-
-	goSwitch(/*myBST, myTree*/);
-
+	goSwitch();
 	return 0;
 }
 //C = Blob(base 2) (1 + SNR)
 
-void goSwitch(/*BST&myBST, AVL &myAVL*/)
+void goSwitch()
 {
 	int param = 0;
-	//bool check = 0;
 	do
 	{	
 		AVL myAVL;
@@ -57,7 +50,6 @@ void goSwitch(/*BST&myBST, AVL &myAVL*/)
 			cin.clear();
 			cin.ignore(255, '\n');
 		}
-
 		if (param < 0 || param > 8)
 		{
 			cout << "\n\tIncorrect input:" << endl;
@@ -72,8 +64,8 @@ void goSwitch(/*BST&myBST, AVL &myAVL*/)
 				{
 					vector<int> randomVec (1000, -1);
 					insertIntoVector(randomVec);
-					insertOutput(myBST, myAVL, randomVec, 1000);
-					removeOutput(myBST, myAVL, randomVec, 1000);
+					insertOutput(myBST, myAVL, randomVec);
+					removeOutput(myBST, myAVL, randomVec);
 				}
 				break;
 				case 2: //run 100k
@@ -81,62 +73,59 @@ void goSwitch(/*BST&myBST, AVL &myAVL*/)
 					
 					vector<int> randomVec(100000, -1);
 					insertIntoVector(randomVec);
-					insertOutput(myBST, myAVL, randomVec, 100000);
-					removeOutput(myBST, myAVL, randomVec, 100000);
+					insertOutput(myBST, myAVL, randomVec);
+					removeOutput(myBST, myAVL, randomVec);
 				}
 				break;
 				case 3: //run 1M
 				{
 					vector<int> randomVec(1000000, -1);
 					insertIntoVector(randomVec);
-					insertOutput(myBST, myAVL, randomVec, 1000000);
-					removeOutput(myBST, myAVL, randomVec, 1000000);
+					insertOutput(myBST, myAVL, randomVec);
+					removeOutput(myBST, myAVL, randomVec);
 				}
 				break;
 				case 4: //Quit
 				{
-					//exit
 					cout << "Bye!" << endl;
 				}
 				break;
-
 			}
 	}while(param != 4);
 }
-void insertIntoVector(vector<int> &randomVecIn)
+void insertIntoVector(vector<int> &rVector)
 {
 	int random;
-	for (int i = 0; i < randomVecIn.size(); i++)
+	for (unsigned int i = 0; i < rVector.size(); i++)
 	{
-		random = rand() % randomVecIn.size() + 1;
-		randomVecIn[i] = random;
+		random = rand() % rVector.size() + 1;
+		rVector[i] = random;
 	}
 }
+
 void initializationMenu()
 {
 	cout << right;
 	cout << setw(33) << setfill(' ') << "Initialization Menu"
-		<< "\n\t-----------------------------"
-		<< "\n\t1. Insert 1k random numbers"
-		<< "\n\t2. Insert 100k random numbers"
-		<< "\n\t3. Insert 1M random numbers"
-		<< "\n\t4. Quit"
+		<< "\n\t------------------------------"
+		<< "\n\t  1. Run 1k random numbers"
+		<< "\n\t  2. Run 100k random numbers"
+		<< "\n\t  3. Run 1M random numbers"
+		<< "\n\t  4. Quit"
 		<< "\n\n\t==>> ";
 }
 
-void insertOutput(BST &myBST, AVL &myAVL, vector<int> &rVector, int call)
+void insertOutput(BST &myBST, AVL &myAVL, vector<int> &rVector)
 {
 	bool firstPass = 0;
 	bool out = 0;
-	//char input;
-	int bstResult = 0;
-	int avlResult = 0;
 	int random;
-	chrono::steady_clock::time_point b1, b2, bstTime;
-	chrono::steady_clock::time_point a1, a2, avlTime;
-
+	chrono::steady_clock::time_point b1, b2;
+	chrono::steady_clock::time_point a1, a2;
+	
+	cout << "\n";
 	cout << right;
-	cout << setw(30) << "Insert Results"
+	cout << setw(29) << "Insert Results"
 		<< "\n\t-----------------------------";
 	do
 	{
@@ -145,19 +134,17 @@ void insertOutput(BST &myBST, AVL &myAVL, vector<int> &rVector, int call)
 
 		b1 = chrono::steady_clock::now();
 		a1 = chrono::steady_clock::now();
-		for (int i = 0; i < call; i++)
+		for (unsigned int i = 0; i <  rVector.size(); i++)
 		{
-			//random = rand()%call + 1;
 			random = rVector[i];
 			//insert randomness!
 			if (firstPass == 0)
-			{
-				//into BST
+			{	//into BST
 				Type newType(random);
 				myBST.insert(newType);
 			}
 			else
-			{
+			{	//into AVL
 				Type newType(random);
 				myAVL.insert(newType);
 			}
@@ -165,29 +152,27 @@ void insertOutput(BST &myBST, AVL &myAVL, vector<int> &rVector, int call)
 		if (firstPass == 0)
 		{
 			b2 = chrono::steady_clock::now();
-			cout << "\n\t" << setw(20) << setfill(' ') << "BST Time ==>> "
+			cout << "\n\t" << setw(19) << setfill(' ') << "BST Time ==>> "
 				<< chrono::duration_cast<chrono::milliseconds>(b2 - b1).count() << " ms";
+			
+			auto bstTime = chrono::duration_cast<chrono::milliseconds>(b2 - b1).count();
 			out = 1;
 		}
 		else
 		{
 			a2 = chrono::steady_clock::now();
-			cout << "\n\t" << setw(20) << setfill(' ') << "AVL Time ==>> "
+			cout << "\n\t" << setw(19) << setfill(' ') << "AVL Time ==>> "
 				<< chrono::duration_cast<chrono::milliseconds>(a2 - a1).count() << " ms";
-			cout << "\n\t-----------------------------"
-			//<< "\n" << setw(41) << setfill(' ') << "P. Display InOrder/PreOrder/PostOrder"
-			<< "\n\t" << setw(23) << setfill(' ') << "Q. Return to Menu"
-			<< "\n\n\t==>> ";
+			
+			auto AVLTime = chrono::duration_cast<chrono::milliseconds>(a2 - a1).count();
+			cout << "\n\t-----------------------------";
+			//<< "\n\t" << setw(23) << setfill(' ') << "4. Return to Menu"
+			//<< "\n\n\t==>> ";
 		}
 	} while (firstPass == 0);
-	/*
-	cin >> input;
-	cin.ignore(255, '\n');
-	failCheck(cin);
-	*/
 }
 
-void removeOutput(BST &myBST, AVL &myAVL, vector<int> &rVector, int call)
+void removeOutput(BST &myBST, AVL &myAVL, vector<int> &rVector)
 {
 	bool firstPass = 0;
 	bool out = 0;
@@ -195,11 +180,11 @@ void removeOutput(BST &myBST, AVL &myAVL, vector<int> &rVector, int call)
 	int bstResult = 0;
 	int avlResult = 0;
 	int random;
-	chrono::steady_clock::time_point b1, b2, bstTime;
-	chrono::steady_clock::time_point a1, a2, avlTime;
+
+	chrono::steady_clock::time_point a1, a2, b1, b2;
 	cout << "\n";
 	cout << right;
-	cout << setw(30) << "Remove Results"
+	cout << setw(29) << "Remove Results"
 		<< "\n\t-----------------------------";
 	do
 	{
@@ -208,22 +193,19 @@ void removeOutput(BST &myBST, AVL &myAVL, vector<int> &rVector, int call)
 
 		b1 = chrono::steady_clock::now();
 		a1 = chrono::steady_clock::now();
-		for (int i = 0; i < call; i++)
+		for (unsigned int i = 0; i < rVector.size(); i++)
 		{
-			//random = rand() % call + 1;
 			//insert randomness!
 			if (i % 2 == 0)
 			{
 				random = rVector[i];
 				if (firstPass == 0)
-				{
-					//into BST
+				{	//oUt of BST
 					Type newType(random);
 					myBST.remove(newType);
-
 				}
 				else
-				{
+				{	//out of AVL
 					Type newType(random);
 					myAVL.remove(newType);
 				}
@@ -232,18 +214,17 @@ void removeOutput(BST &myBST, AVL &myAVL, vector<int> &rVector, int call)
 		if (firstPass == 0)
 		{
 			b2 = chrono::steady_clock::now();
-			cout << "\n\t" << setw(20) << setfill(' ') << "BST Time ==>> "
+			cout << "\n\t" << setw(19) << setfill(' ') << "BST Time ==>> "
 				<< chrono::duration_cast<chrono::milliseconds>(b2 - b1).count() << " ms";
 			out = 1;
 		}
 		else
 		{
 			a2 = chrono::steady_clock::now();
-			cout << "\n\t" << setw(20) << setfill(' ') << "AVL Time ==>> "
+			cout << "\n\t" << setw(19) << setfill(' ') << "AVL Time ==>> "
 				<< chrono::duration_cast<chrono::milliseconds>(a2 - a1).count() << " ms";
 			cout << "\n\t-----------------------------"
-				//<< "\n" << setw(41) << setfill(' ') << "P. Display InOrder/PreOrder/PostOrder"
-				<< "\n\t" << setw(23) << setfill(' ') << "Q. Return to Menu"
+				<< "\n\t" << setw(22) << setfill(' ') << "4. Return to Menu"
 				<< "\n\n\t==>> ";
 		}
 	} while (firstPass == 0);
@@ -251,6 +232,8 @@ void removeOutput(BST &myBST, AVL &myAVL, vector<int> &rVector, int call)
 	cin >> input;
 	cin.ignore(255, '\n');
 	failCheck(cin);
+	//myAVL.printAll();
+	//myBST.printAll();
 }
 
 //catches failed input cast and resets istream
