@@ -87,7 +87,10 @@ void goSwitch()
 				break;
 				case 4: //run 1M
 				{
-					vector<int> randomVec(1000000, -1);
+					//vector<int> randomVec(1000000, -1);
+					int temp;
+					cin>>temp;
+					vector<int> randomVec(temp, -1);
 					insertIntoVector(randomVec);
 					insertOutput(myBST, myAVL, randomVec);
 					removeOutput(myBST, myAVL, randomVec);
@@ -233,7 +236,7 @@ void removeOutput(BST &myBST, AVL &myAVL, vector<int> &rVector)
 			cout << "\n\t" << setw(19) << setfill(' ') << "AVL Time ==>> "
 				<< chrono::duration_cast<chrono::milliseconds>(a2 - a1).count() << " ms";
 			cout << "\n\t-----------------------------"
-				<< "\n\t" << setw(22) << setfill(' ') << "4. Return to Menu"
+				<< "\n\t" << setw(22) << setfill(' ') << "5. Return to Menu"
 				<< "\n\n\t==>> ";
 		}
 	} while (firstPass == 0);
