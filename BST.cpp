@@ -269,6 +269,7 @@ void BST::remove(const Type &TypeIn, Node *&NodeIn)
 	//balance(NodeIn);
 }
 //Other
+
 //Returns height of BST node for rotations and balance
 int BST::height(Node *NodeIn) const
 {

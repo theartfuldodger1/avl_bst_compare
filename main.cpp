@@ -178,8 +178,6 @@ void insertOutput(BST &myBST, AVL &myAVL, vector<int> &rVector)
 			
 			auto AVLTime = chrono::duration_cast<chrono::milliseconds>(a2 - a1).count();
 			cout << "\n\t-----------------------------";
-			//<< "\n\t" << setw(23) << setfill(' ') << "4. Return to Menu"
-			//<< "\n\n\t==>> ";
 		}
 	} while (firstPass == 0);
 }
