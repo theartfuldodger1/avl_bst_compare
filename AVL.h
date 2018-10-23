@@ -23,6 +23,7 @@ using namespace std;
 class AVL : public BST
 {
 private:
+/*
 	struct Node
 	{
 		Type NodeElement;
@@ -37,6 +38,7 @@ private:
 		Node(const Type &&TypeIn, Node *lt, Node *rt, int ht)
 			: NodeElement{ move(TypeIn) }, left{ lt }, right{ rt }, height{ ht } { }
 	};
+	*/
 	Node* clone(Node *NodeIn) const;
 
 	Node *root;
