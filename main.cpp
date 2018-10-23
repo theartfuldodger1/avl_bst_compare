@@ -87,10 +87,10 @@ void goSwitch()
 				break;
 				case 4: //run 1M
 				{
-					//vector<int> randomVec(1000000, -1);
-					int temp;
-					cin>>temp;
-					vector<int> randomVec(temp, -1);
+					vector<int> randomVec(1000000, -1);
+					//int temp;
+					//cin>>temp;
+					//vector<int> randomVec(temp, -1);
 					insertIntoVector(randomVec);
 					insertOutput(myBST, myAVL, randomVec);
 					removeOutput(myBST, myAVL, randomVec);
