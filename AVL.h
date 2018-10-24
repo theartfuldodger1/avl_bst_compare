@@ -12,10 +12,10 @@ Insertions are 1k, 10k, 100k and 1m nodes. -the duration of the insertions are t
 #define __AVL_H__
 
 #include <iostream>
-#include <string>
-#include <list>
+#include <string> //for string handling
+#include <list> //for lists
 
-#include "Type.h"
+//#include "Type.h"
 #include "BST.h"
 
 using namespace std;
@@ -23,23 +23,25 @@ using namespace std;
 class AVL : public BST
 {
 private:
+/*
 	struct Node
 	{
-		Type NodeElement;
+		Type NodeElement; //data here
 		Node * left;
 		Node * right;
 		int height = 0;
 		
-		//Node constructors :
+		//Node constructors
 		Node(const Type &TypeIn, Node *lt, Node *rt, int ht)
 			: NodeElement{ TypeIn }, left{ lt }, right{ rt }, height{ ht } { }
 		
 		Node(const Type &&TypeIn, Node *lt, Node *rt, int ht)
 			: NodeElement{ move(TypeIn) }, left{ lt }, right{ rt }, height{ ht } { }
-	};
-	Node* clone(Node *NodeIn) const;
+	};*/
 
 	Node *root;
+	Node* clone(Node *NodeIn) const;
+	
 	static const int ALLOWED_IMBALANCE = 1;
 
 	int height(Node *NodeIn) const;
@@ -49,17 +51,18 @@ private:
 	void makeEmpty(Node *&NodeIn);
 	void remove(const Type &TypeIn, Node *&NodeIn);
 
+	//AVL balancing functions
 	void balance(Node *&NodeIn);
 	void doubleWithLeftChild(Node *&NodeIn);
 	void doubleWithRightChild(Node *&NodeIn);
-
 	void rotateLL(Node *&NodeIn);
 	void rotateRR(Node *&NodeIn);
 
-	const Type& find(const Type &TypeIn, Node *NodeIn) const;
+	
+	//const Type& find(const Type &TypeIn, Node *NodeIn) const;
 	const Type& findMin(Node* NodeIn) const;
-	const Type& findMax(Node* NodeIn) const;
-
+	//const Type& findmax(Node* NodeIn) const;
+	
 public:
 	AVL();                  // default
 	AVL(const AVL &);		// copy constructor
@@ -67,8 +70,8 @@ public:
 
 	// Type modifiers:
 	void clear();                // empty the Type
-	void insert(const Type& x);  // insert element
-	void remove(const Type& x);  // remove element
+	void insert(const Type& typeIn);  // insert element
+	void remove(const Type& typeIn);  // remove element
 };
 
 #endif /* __AVL_H__ */

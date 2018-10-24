@@ -25,13 +25,15 @@ void insertIntoVector(vector<int> &rVector);
 void insertOutput(BST &myBST, AVL &myAVL, vector<int> &);
 void removeOutput(BST &myBST, AVL &myAVL, vector<int> &);
 
-int main(/*int argc, char* argv[]*/)
+int main()
 {
 	goSwitch();
 	return 0;
 }
-//C = Blob(base 2) (1 + SNR)
-
+//C = Blog(base 2) (1 + SNR)
+//basic switch provides calls for functions per user input of choice, 
+//initially calls initializationMenu() to provide choices and then accepts user input
+//followed by lfunction calls based on that input
 void goSwitch()
 {
 	int param = 0;
@@ -45,7 +47,7 @@ void goSwitch()
 		initializationMenu();
 		cin >> param;
 
-		if (cin.fail())
+		if (cin.fail())//clears buffer
 		{
 			cin.clear();
 			cin.ignore(255, '\n');
@@ -68,7 +70,7 @@ void goSwitch()
 					removeOutput(myBST, myAVL, randomVec);
 				}
 				break;
-				case 2: //run 1k
+				case 2: //run 10k
 				{
 					vector<int> randomVec(10000, -1);
 					insertIntoVector(randomVec);
@@ -85,10 +87,10 @@ void goSwitch()
 					removeOutput(myBST, myAVL, randomVec);
 				}
 				break;
-				case 4: //run 1M
+				case 4: //run 1M, set up to also run user defined size of input -> 
 				{
-					vector<int> randomVec(1000000, -1);
-					//int temp;
+					vector<int> randomVec(1000000, -1); //comment out this
+					//int temp;							//remove  // of netypeInt 3 lines to run user input and then change initialization propt accordingly
 					//cin>>temp;
 					//vector<int> randomVec(temp, -1);
 					insertIntoVector(randomVec);
@@ -104,6 +106,7 @@ void goSwitch()
 			}
 	}while(param != 5);
 }
+//inserts random numbers into vector. number of elements dependent on user choice in initialization menu
 void insertIntoVector(vector<int> &rVector)
 {
 	int random;
@@ -113,7 +116,7 @@ void insertIntoVector(vector<int> &rVector)
 		rVector[i] = random;
 	}
 }
-
+//menu provides user options. called by goSwitch()
 void initializationMenu()
 {
 	cout << right;
@@ -126,10 +129,12 @@ void initializationMenu()
 		<< "\n\t  5. Quit"
 		<< "\n\n\t==>> ";
 }
-
+//provides functionality for insertion of elements from vector parameter into
+//a BST, timed with <chrono> followed by insertion into an AVL tree that is also 
+//timed. Provides output of results. uses same vector for each tree
 void insertOutput(BST &myBST, AVL &myAVL, vector<int> &rVector)
 {
-	bool firstPass = 0;
+	bool firstPass = 0;//allows timing and insertion into one tree before commmencing insertion/timing into the other tree
 	bool out = 0;
 	int random;
 	chrono::steady_clock::time_point b1, b2;
@@ -181,14 +186,14 @@ void insertOutput(BST &myBST, AVL &myAVL, vector<int> &rVector)
 		}
 	} while (firstPass == 0);
 }
-
+//provides functionality for removal and deletion of elements from every other vector parameter element from
+//a BST, timed with <chrono> followed by deletion from an AVL tree that is also 
+//timed. Provides output of results. uses same vector for each tree
 void removeOutput(BST &myBST, AVL &myAVL, vector<int> &rVector)
 {
 	bool firstPass = 0;
 	bool out = 0;
 	char input;
-	int bstResult = 0;
-	int avlResult = 0;
 	int random;
 
 	chrono::steady_clock::time_point a1, a2, b1, b2;
@@ -242,10 +247,9 @@ void removeOutput(BST &myBST, AVL &myAVL, vector<int> &rVector)
 	cin >> input;
 	cin.ignore(255, '\n');
 	failCheck(cin);
-	//myAVL.printAll();
-	//myBST.printAll();
+	//myAVL.printAll(); //test prints of all avl elements
+	//myBST.printAll(); //test prints of all BST elements
 }
-
 //catches failed input cast and resets istream
 void failCheck(istream &cin)
 {

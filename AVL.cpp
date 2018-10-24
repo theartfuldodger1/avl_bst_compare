@@ -8,19 +8,12 @@ This program is tasked to takes random integers and inserts into an AVL tree and
 Insertions are 1k, 10k, 100k and 1m nodes. the duration of the insertions are timed and compared.
 */
 
-#include <iostream>
-#include <string> //for string handling
-#include <list> //for lists
-
 #include "AVL.h"
 
 using namespace std;
 
 //default
-AVL::AVL()
-{
-	root = NULL;
-}
+AVL::AVL() : root(NULL){ }
 //copy constructor
 AVL::AVL(const AVL &Tree)
 {
@@ -30,27 +23,26 @@ AVL::AVL(const AVL &Tree)
 //destructor
 AVL::~AVL()
 {
-
 	makeEmpty(root);
 	delete root;
 }
 // Type modifiers:
-//empties avl Type
-void AVL::clear()// empty the Type
+//empties avl tree
+void AVL::clear()// empty the tree
 {
 	makeEmpty(root);
 }
 //calls recursive insert
-void AVL::insert(const Type& x)// insert element x
+void AVL::insert(const Type& typeIn)// insert element typeIn
 {
 	//call private recursive func
-	insert(x, root);
+	insert(typeIn, root);
 }
 //calls recursive remove function
-void AVL::remove(const Type& x)// remove element x
+void AVL::remove(const Type& typeIn)// remove element typeIn
 {
 	//call private recursive func
-	remove(x, root);
+	remove(typeIn, root);
 }
 
 
@@ -63,7 +55,7 @@ AVL::Node* AVL::clone(Node *NodeIn) const
 	else
 		return new Node{ NodeIn->NodeElement, clone(NodeIn->left), clone(NodeIn->right), NodeIn->height };
 }
-//donish
+
 //Internal recursive delete
 void AVL::makeEmpty(Node *&NodeIn)
 {
@@ -75,7 +67,8 @@ void AVL::makeEmpty(Node *&NodeIn)
 	}
 	NodeIn = nullptr;
 }
-//Recursive find() Returns Type object if found. otherwise empty Type
+/*
+//Recursive find() Returns Type object if found. otherwise returns NO_Type with -1
 const Type& AVL::find(const Type &TypeIn, Node *NodeIn) const
 {
 	if (NodeIn == nullptr)
@@ -87,7 +80,8 @@ const Type& AVL::find(const Type &TypeIn, Node *NodeIn) const
 	else
 		return NodeIn->NodeElement; //Match!
 }
-//recursive findMin(). Returns Type object if found. otherwise empty Type
+*/
+//recursive findMin(). Returns Type object if found. otherwise returns NO_Type with -1
 const Type& AVL::findMin(Node *NodeIn) const
 {
 	if (NodeIn == nullptr)
@@ -96,8 +90,9 @@ const Type& AVL::findMin(Node *NodeIn) const
 		return NodeIn->NodeElement;
 	return findMin(NodeIn->left);
 }
-//Recursive findMax(). Returns Type object if found. otherwise empty Type
-const Type& AVL::findMax(Node* NodeIn) const
+/*
+//Recursive findmax(). Returns Type object if found. otherwise returns NO_Type with -1
+const Type& AVL::findmax(Node* NodeIn) const
 {
 	if (NodeIn == nullptr)
 		return NO_Type;
@@ -105,6 +100,7 @@ const Type& AVL::findMax(Node* NodeIn) const
 		return NodeIn->NodeElement;
 	return findMin(NodeIn->right);
 }
+*/
 //Recursive insert w/balance call
 void AVL::insert(const Type &TypeIn, Node *&NodeIn)
 {
@@ -144,7 +140,7 @@ void AVL::remove(const Type &TypeIn, Node *&NodeIn)
 }
 
 //Type Adjustment functions. All AVL nodes created with height info to facilitate
-//Balances AVL Type, keeps order integrity
+//Balances AVL tree, keeps order integrity
 void AVL::balance(Node *&NodeIn)
 {
 	if (NodeIn == nullptr)
@@ -188,19 +184,18 @@ void AVL::rotateRR(Node *&NodeIn)//rotateWithRightchild
 	tempnode->height = max(height(tempnode->right), NodeIn->height) + 1;
 	NodeIn = tempnode;
 }
-//Double rotation, calls RL
+//Double rotation, calls RL()
 void AVL::doubleWithLeftChild(Node *&NodeIn)
 {
 	rotateRR(NodeIn->left);
 	rotateLL(NodeIn);
 }
-//Double Rotation, calls LR
+//Double Rotation, calls LR()
 void AVL::doubleWithRightChild(Node *&NodeIn)
 {
 	rotateLL(NodeIn->right);
 	rotateRR(NodeIn);
 }
-
 //Other
 //Returns height of AVL node for rotations and balance
 int AVL::height(Node *NodeIn) const
@@ -217,4 +212,6 @@ int AVL::max(int left, int right)
 	else
 		return left;//both are same value
 }
+
+
 

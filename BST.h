@@ -21,8 +21,8 @@ using namespace std;
 
 class BST
 {
-private:
-	struct Node
+public:
+	struct Node //initially, struct Node was private, but placed public for this application in order to allow AVL to access
 	{
 		Type NodeElement;
 		Node * left;
@@ -36,10 +36,9 @@ private:
 		Node(const Type &&TypeIn, Node *lt, Node *rt, int ht)
 			: NodeElement{ move(TypeIn) }, left{ lt }, right{ rt }, height{ ht } { }
 	};
-	Node* clone(Node *NodeIn) const;
-
+private:
 	Node *root;
-	static const int ALLOWED_IMBALANCE = 1;
+	Node* clone(Node *NodeIn) const;
 
 	int height(Node *NodeIn) const;
 	int max(int, int);//returns greater of 2 numbers or returns either if equal
@@ -49,10 +48,12 @@ private:
 	void printType(Node *NodeIn, ostream& out = cout) const;
 	void remove(const Type &TypeIn, Node *&NodeIn);
 
+	//search functions
 	const Type& find(const Type &TypeIn, Node *NodeIn) const;
 	const Type& findMin(Node* NodeIn) const;
-	const Type& findMax(Node* NodeIn) const;
+	const Type& findmax(Node* NodeIn) const;
 
+	//special print functions. each prints entire contents of tree
 	void displayInOrder(Node *) const;
 	void displayPreOrder(Node *) const;
 	void displayPostOrder(Node *) const;
@@ -63,21 +64,22 @@ public:
 	~BST();					// destructor
 
 	// Search methods:
-	const Type& find(const Type& x) const;
+	const Type& find(const Type& typeIn) const;
 	const Type& findMin() const;
-	const Type& findMax() const;
-	//searches the entire Type for all occurrences of Type objects that match its Type argument.
-	//Does NOT have to examine every single Node in the Type every time it is called and 
-	//does so without missing any matching objects. Uses samename() method.
-	list<Type> findallmatches(const Type & x) const;
+	const Type& findmax() const;
+
+	//searches the entire tree for all occurrences of Type objects that match its Type argument.
+	//Does NOT have to etypeInamine every single Node in the tree every time it is called and 
+	//does so without missing any matching objects. Uses samename() method to match.
+	list<Type> findallmatches(const Type & typeIn) const;
 
 	// Displaying the Type contents:
 	void print(ostream& out) const;
 
 	// Type modifiers:
 	void clear();                // empty the Type
-	void insert(const Type& x);  // insert element
-	void remove(const Type& x);  // remove element
+	void insert(const Type& typeIn);  // insert element
+	void remove(const Type& typeIn);  // remove element
 
 	void printAll();//disabled internally.
 };
