@@ -19,7 +19,6 @@ AVL::AVL(const AVL &Tree)
 {
 	root = clone(Tree.root);
 }
-
 //destructor
 AVL::~AVL()
 {
@@ -45,7 +44,6 @@ void AVL::remove(const Type& typeIn)// remove element typeIn
 	remove(typeIn, root);
 }
 
-
 //PRIVATE RECURSIVE FUNCTIONS
 //Copy constructor accessed by regular copy constructor
 AVL::Node* AVL::clone(Node *NodeIn) const
@@ -55,7 +53,6 @@ AVL::Node* AVL::clone(Node *NodeIn) const
 	else
 		return new Node{ NodeIn->NodeElement, clone(NodeIn->left), clone(NodeIn->right), NodeIn->height };
 }
-
 //Internal recursive delete
 void AVL::makeEmpty(Node *&NodeIn)
 {
@@ -67,20 +64,6 @@ void AVL::makeEmpty(Node *&NodeIn)
 	}
 	NodeIn = nullptr;
 }
-/*
-//Recursive find() Returns Type object if found. otherwise returns NO_Type with -1
-const Type& AVL::find(const Type &TypeIn, Node *NodeIn) const
-{
-	if (NodeIn == nullptr)
-		return NO_Type;
-	else if (TypeIn < NodeIn->NodeElement)
-		return find(TypeIn, NodeIn->left);
-	else if (NodeIn->NodeElement < TypeIn)
-		return find(TypeIn, NodeIn->right);
-	else
-		return NodeIn->NodeElement; //Match!
-}
-*/
 //recursive findMin(). Returns Type object if found. otherwise returns NO_Type with -1
 const Type& AVL::findMin(Node *NodeIn) const
 {
@@ -90,17 +73,6 @@ const Type& AVL::findMin(Node *NodeIn) const
 		return NodeIn->NodeElement;
 	return findMin(NodeIn->left);
 }
-/*
-//Recursive findmax(). Returns Type object if found. otherwise returns NO_Type with -1
-const Type& AVL::findmax(Node* NodeIn) const
-{
-	if (NodeIn == nullptr)
-		return NO_Type;
-	if (NodeIn->right == nullptr)
-		return NodeIn->NodeElement;
-	return findMin(NodeIn->right);
-}
-*/
 //Recursive insert w/balance call
 void AVL::insert(const Type &TypeIn, Node *&NodeIn)
 {
@@ -138,7 +110,6 @@ void AVL::remove(const Type &TypeIn, Node *&NodeIn)
 	}
 	balance(NodeIn);
 }
-
 //Type Adjustment functions. All AVL nodes created with height info to facilitate
 //Balances AVL tree, keeps order integrity
 void AVL::balance(Node *&NodeIn)

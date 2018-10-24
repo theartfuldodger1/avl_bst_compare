@@ -23,21 +23,6 @@ using namespace std;
 class AVL : public BST
 {
 private:
-/*
-	struct Node
-	{
-		Type NodeElement; //data here
-		Node * left;
-		Node * right;
-		int height = 0;
-		
-		//Node constructors
-		Node(const Type &TypeIn, Node *lt, Node *rt, int ht)
-			: NodeElement{ TypeIn }, left{ lt }, right{ rt }, height{ ht } { }
-		
-		Node(const Type &&TypeIn, Node *lt, Node *rt, int ht)
-			: NodeElement{ move(TypeIn) }, left{ lt }, right{ rt }, height{ ht } { }
-	};*/
 
 	Node *root;
 	Node* clone(Node *NodeIn) const;
@@ -58,10 +43,7 @@ private:
 	void rotateLL(Node *&NodeIn);
 	void rotateRR(Node *&NodeIn);
 
-	
-	//const Type& find(const Type &TypeIn, Node *NodeIn) const;
 	const Type& findMin(Node* NodeIn) const;
-	//const Type& findmax(Node* NodeIn) const;
 	
 public:
 	AVL();                  // default

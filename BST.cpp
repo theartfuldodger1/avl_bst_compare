@@ -111,7 +111,6 @@ void BST::printType(Node *NodeIn, ostream& out) const
 		printType(NodeIn->right, out);
 	}
 }
-
 // Type modifiers:
 //empties BST
 void BST::clear()// empty the tree
