@@ -62,6 +62,7 @@ public:
 	BST();                  // default
 	BST(const BST &);		// copy constructor
 	~BST();					// destructor
+	Type & operator[](const Type &typeIn);
 
 	// Search methods:
 	const Type& find(const Type& typeIn) const;

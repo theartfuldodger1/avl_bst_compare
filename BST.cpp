@@ -26,7 +26,12 @@ BST::~BST()
 	makeEmpty(root);
 	delete root;
 }
-
+//Subscripting operator that returns a reference to the item. Must be a member function
+Type & BST::operator[](int i) //https://www.tutorialspoint.com/cplusplus/subscripting_operator_overloading.htm
+{
+	if (i > )
+	return typeIn;
+}
 // Search methods:
 //Recursive. returns as a Type. comparison
 const Type& BST::find(const Type &typeIn) const
