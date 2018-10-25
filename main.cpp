@@ -187,8 +187,6 @@ void removeOutput(BST &myBST, AVL &myAVL, vector<int> &rVector)
 	bool firstPass = 0;
 	bool out = 0;
 	char input;
-	int bstResult = 0;
-	int avlResult = 0;
 	int random;
 
 	chrono::steady_clock::time_point a1, a2, b1, b2;

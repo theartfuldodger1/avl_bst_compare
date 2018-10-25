@@ -30,13 +30,12 @@ AVL::AVL(const AVL &Tree)
 //destructor
 AVL::~AVL()
 {
-
 	makeEmpty(root);
 	delete root;
 }
 // Type modifiers:
-//empties avl Type
-void AVL::clear()// empty the Type
+//empties avl tree
+void AVL::clear()// empty the tree
 {
 	makeEmpty(root);
 }

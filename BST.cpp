@@ -101,6 +101,7 @@ list<Type> BST::findallmatches(const Type &x) const
 	}
 	return Outgoing;
 }
+
 // Displaying the Type contents:
 void BST::print(ostream& out) const
 {
@@ -160,7 +161,7 @@ void BST::makeEmpty(Node *&NodeIn)
 	}
 	NodeIn = nullptr;
 }
-//Printing method that demonstrates 3 different print algorithms. This is called by disabled internally
+//Printing method that demonstrates 3 different print algorithms.
 //displayInOrder
 //displayPreOrder
 //displayPostOrder

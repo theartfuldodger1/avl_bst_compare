@@ -60,7 +60,7 @@ bool samename(const Type & Type1, const Type & Type2)
 	return false;
 }
 //This returns true if and only the digit member of the first Type object is smaller than
-//that of the second.This is redundant to operator< because it can be modified to ignore
+//that of the second. This is redundant to operator< because it can be modified to ignore
 //a secondary key
 bool islessname(const Type & Type1, const Type & Type2)
 {
