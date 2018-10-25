@@ -21,6 +21,8 @@ class Type
 public:
 	Type(int digitIn);
 
+	//comparators. some redundancy etypeInists due to transfer of functions and classes from 
+	//previously created application
 	friend bool islessname(const Type & t1, const Type & t2);
 	friend bool samename(const Type & t1, const Type & t2);
 	friend bool operator==(const Type & t1, const Type & t2);
@@ -33,7 +35,7 @@ public:
 private:
 	int digit;
 };
-// A Type object indicating no Type exists
+// A Type object indicating no Type etypeInists
 const Type  NO_Type(-1);
 
 #endif /* __Type_H__ */

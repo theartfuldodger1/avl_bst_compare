@@ -17,28 +17,21 @@ Insertions are 1k, 10k, 100k and 1m nodes. the duration of the insertions are ti
 using namespace std;
 
 // default
-BST::BST()
-{
-	root = NULL;
-}
+BST::BST() : root(NULL) { }
 // copy constructor
-BST::BST(const BST &Tree)
-{
-	root = clone(Tree.root);
-}
+BST::BST(const BST &Tree) : root (clone(Tree.root)) { }
 //destructor
 BST::~BST()
 {
-
 	makeEmpty(root);
 	delete root;
 }
 
 // Search methods:
 //Recursive. returns as a Type. comparison
-const Type& BST::find(const Type &x) const
+const Type& BST::find(const Type &typeIn) const
 {
-	return find(x, root);
+	return find(typeIn, root);
 }
 //Recursive. Returns min based on comparison
 const Type& BST::findMin() const
@@ -46,20 +39,20 @@ const Type& BST::findMin() const
 	return findMin(root);
 }
 //Recursive. Returns max based on comparison
-const Type& BST::findMax() const
+const Type& BST::findmax() const
 {
-	return findMax(root);
+	return findmax(root);
 }
-//Search for all matches of a particular species based on string comparison
+//Search for all matches of a particular species based on digit value comparison
 //uses two algorithms, one an iterative search/find and the other an iterative
 //in-order traversal modified to start with the object found by the first algo
 //and push the found objects into a list. The in-order traversal uses a stack.
 //returns a list of Types
-list<Type> BST::findallmatches(const Type &x) const
+list<Type> BST::findallmatches(const Type &typeIn) const
 {
 	//use an iterative find. once found, use that as new root for loop
 	bool done = false;
-	Type Type1 = x;
+	Type Type1 = typeIn;
 	list<Node*> NodeStack;
 	list<Type> Outgoing;
 
@@ -101,8 +94,7 @@ list<Type> BST::findallmatches(const Type &x) const
 	}
 	return Outgoing;
 }
-
-// Displaying the Type contents:
+// Prints tree contents to console
 void BST::print(ostream& out) const
 {
 	if (root == nullptr)
@@ -120,24 +112,23 @@ void BST::printType(Node *NodeIn, ostream& out) const
 		printType(NodeIn->right, out);
 	}
 }
-
 // Type modifiers:
 //empties BST
-void BST::clear()// empty the Type
+void BST::clear()// empty the tree
 {
 	makeEmpty(root);
 }
 //calls recursive insert
-void BST::insert(const Type& x)// insert element x
+void BST::insert(const Type& typeIn)// insert element typeIn
 {
-	//call private recursive func
-	insert(x, root);
+	//call private recursive  insert func
+	insert(typeIn, root);
 }
 //calls recursive remove function
-void BST::remove(const Type& x)// remove element x
+void BST::remove(const Type& typeIn)// remove element typeIn
 {
-	//call private recursive func
-	remove(x, root);
+	//call private recursive remove func
+	remove(typeIn, root);
 }
 
 //PRIVATE RECURSIVE FUNCTIONS
@@ -149,7 +140,6 @@ BST::Node* BST::clone(Node *NodeIn) const
 	else
 		return new Node{ NodeIn->NodeElement, clone(NodeIn->left), clone(NodeIn->right), NodeIn->height };
 }
-//donish
 //Internal recursive delete
 void BST::makeEmpty(Node *&NodeIn)
 {
@@ -214,7 +204,7 @@ const Type& BST::find(const Type &TypeIn, Node *NodeIn) const
 	else
 		return NodeIn->NodeElement; //Match!
 }
-//recursive findMin(). Returns Type object if found. otherwise empty Type
+//recursive findMin(). Returns Type object if found. otherwise returns NO_Type with -1
 const Type& BST::findMin(Node *NodeIn) const
 {
 	if (NodeIn == nullptr)
@@ -223,8 +213,8 @@ const Type& BST::findMin(Node *NodeIn) const
 		return NodeIn->NodeElement;
 	return findMin(NodeIn->left);
 }
-//Recursive findMax(). Returns Type object if found. otherwise empty Type
-const Type& BST::findMax(Node* NodeIn) const
+//Recursive findmax(). Returns Type object if found. otherwise returns NO_Type with -1
+const Type& BST::findmax(Node* NodeIn) const
 {
 	if (NodeIn == nullptr)
 		return NO_Type;
@@ -232,7 +222,7 @@ const Type& BST::findMax(Node* NodeIn) const
 		return NodeIn->NodeElement;
 	return findMin(NodeIn->right);
 }
-//Recursive insert w/balance call
+//Recursive insert w/o balance call
 void BST::insert(const Type &TypeIn, Node *&NodeIn)
 {
 	if (NodeIn == nullptr)
@@ -247,7 +237,7 @@ void BST::insert(const Type &TypeIn, Node *&NodeIn)
 	}
 		//balance(NodeIn);
 }
-//Recursive remove w/ balance call
+//Recursive remove w/o balance call
 void BST::remove(const Type &TypeIn, Node *&NodeIn)
 {
 	if (NodeIn == nullptr)
@@ -271,7 +261,7 @@ void BST::remove(const Type &TypeIn, Node *&NodeIn)
 }
 //Other
 
-//Returns height of BST node for rotations and balance
+//Returns height of BST node
 int BST::height(Node *NodeIn) const
 {
 	return NodeIn == nullptr ? -1 : NodeIn->height;

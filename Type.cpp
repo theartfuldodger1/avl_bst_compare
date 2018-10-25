@@ -12,11 +12,8 @@ Insertions are 1k, 10k, 100k and 1m nodes. the duration of the insertions are ti
 
 using namespace std;
 
-Type::Type(int digitIn)
-{
-	digit = digitIn;
-}
-//Given two Type objects, it returns true if and only if they have the same value.
+Type::Type(int digitIn): digit(digitIn) { }
+//Given two Type objects, this function returns true if and only if they have the same value.
 bool operator==(const Type &Type1, const Type &Type2)
 {
 	int digit1 = Type1.digit;
@@ -29,6 +26,7 @@ bool operator==(const Type &Type1, const Type &Type2)
 }
 //This compares the two Types using digit as the primary key. Returns true 
 //if Type1 is less than Type2 in this ordering and false otherwise
+//originally constructed using a second key for a different application
 bool operator<(const Type & Type1, const Type & Type2)
 {
 	int digit1 = Type1.digit;
@@ -48,7 +46,8 @@ ostream& operator<< (ostream & os, const Type & t)
 	return os;
 }
 //This returns true if and only if the two Types passed to it have identical digit members.
-//This could differ from operator== because the other can be allowed to ignore a secondary key 
+//This could differ from operator== because either could be allowed to use a secondary key 
+//originally constructed using a second key for a different application
 bool samename(const Type & Type1, const Type & Type2)
 {
 	int digit1 = Type1.digit;
@@ -60,8 +59,8 @@ bool samename(const Type & Type1, const Type & Type2)
 	return false;
 }
 //This returns true if and only the digit member of the first Type object is smaller than
-//that of the second. This is redundant to operator< because it can be modified to ignore
-//a secondary key
+//that of the second. This is redundant to operator<. either could be allowed to use a secondary key 
+//originally constructed using a second key for a different application
 bool islessname(const Type & Type1, const Type & Type2)
 {
 	int digit1 = Type1.digit;
@@ -72,7 +71,7 @@ bool islessname(const Type & Type1, const Type & Type2)
 	else
 		return false;
 }
-//This returns the digit of the Type
+//simple getter. This returns the digit of the Type
 int Type::getDigit()
 {
 	return digit;
