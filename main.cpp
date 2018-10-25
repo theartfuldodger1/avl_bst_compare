@@ -20,6 +20,7 @@ using namespace std;
 
 void goSwitch();
 void initializationMenu();
+void findMenu(BST &myBST, AVL &myAVL);
 void failCheck(istream &cin);
 void insertIntoVector(vector<int> &rVector);
 void insertOutput(BST &myBST, AVL &myAVL, vector<int> &);
@@ -98,13 +99,18 @@ void goSwitch()
 					removeOutput(myBST, myAVL, randomVec);
 				}
 				break;
-				case 5: //Quit
+				case 5: //Find a number in a tree
+				{
+					findMenu(myBST, myAVL);
+				}
+				break;
+				case 6: //Quit
 				{
 					cout << "Bye!" << endl;
 				}
 				break;
 			}
-	}while(param != 5);
+	}while(param != 6);
 }
 //inserts random numbers into vector. number of elements dependent on user choice in initialization menu
 void insertIntoVector(vector<int> &rVector)
@@ -126,8 +132,32 @@ void initializationMenu()
 		<< "\n\t  2. Run 10k random numbers"
 		<< "\n\t  3. Run 100k random numbers"
 		<< "\n\t  4. Run 1M random numbers"
-		<< "\n\t  5. Quit"
+		<< "\n\t  5. Find a number in a tree"
+		<< "\n\t  6. Quit"
 		<< "\n\n\t==>> ";
+}
+void findMenu(BST &myBST, AVL &myAVL)
+{
+	cout << "\n\tEnter a number you'd like to find"
+		<< "\n\n\t==>> ";
+
+	int searchParam;
+	cin >> searchParam;
+
+	Type inBST(-1);
+	Type inAVL(-1);
+	inBST = myBST[searchParam];
+	inAVL = myAVL[searchParam];
+
+	if(inBST == -1)
+		cout << "\n\tThe number you searched was not found in the BST:" << inBST.getDigit();
+	else
+		cout << "\n\tThe number you searched was found in the BST: " << inBST.getDigit();
+
+	if (inAVL == -1)
+		cout << "\n\tThe number you searched was not found in the AVL Tree:" << inAVL.getDigit();
+	else
+		cout << "\n\tThe number you searched was found in the BST:" << inAVL.getDigit();
 }
 //provides functionality for insertion of elements from vector parameter into
 //a BST, timed with <chrono> followed by insertion into an AVL tree that is also 
@@ -239,7 +269,7 @@ void removeOutput(BST &myBST, AVL &myAVL, vector<int> &rVector)
 			cout << "\n\t" << setw(19) << setfill(' ') << "AVL Time ==>> "
 				<< chrono::duration_cast<chrono::milliseconds>(a2 - a1).count() << " ms";
 			cout << "\n\t-----------------------------"
-				<< "\n\t" << setw(22) << setfill(' ') << "5. Return to Menu"
+				<< "\n\t" << setw(22) << setfill(' ') << "6. Return to Menu"
 				<< "\n\n\t==>> ";
 		}
 	} while (firstPass == 0);

@@ -38,7 +38,7 @@ bool operator<(const Type & Type1, const Type & Type2)
 		return false;
 
 }
-//This prints a Type object onto the given ostream. Each of the members of the Type object should
+//This prints a() Type object onto the given ostream. Each of the members of the Type object should
 //be printed in general. In this instance we only type Type digit
 ostream& operator<< (ostream & os, const Type & t)
 {

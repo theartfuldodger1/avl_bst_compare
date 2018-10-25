@@ -28,6 +28,11 @@ BST::~BST()
 }
 
 // Search methods:
+const Type& BST::operator[](int param)
+{
+	Type temp(param);
+	return find(param, root);
+}
 //Recursive. returns as a Type. comparison
 const Type& BST::find(const Type &typeIn) const
 {
@@ -266,7 +271,41 @@ int BST::height(Node *NodeIn) const
 {
 	return NodeIn == nullptr ? -1 : NodeIn->height;
 }
+//simple getter. This returns the height of the Type
+int BST::getHeight(int param) const
+{
+	int temp = -1;
 
+	return temp;// NodeIn->height;
+}
+/*
+//Recursive. returns as a Type. comparison
+const Type& BST::find(const Type &typeIn) const
+{
+	return find(typeIn, root);
+}
+//Recursive find() Returns Type object if found. otherwise empty Type
+const Type& BST::find(const Type &TypeIn, Node *NodeIn) const
+{
+if (NodeIn == nullptr)
+return NO_Type;
+else if (TypeIn < NodeIn->NodeElement)
+return find(TypeIn, NodeIn->left);
+else if (NodeIn->NodeElement < TypeIn)
+return find(TypeIn, NodeIn->right);
+else
+return NodeIn->NodeElement; //Match!
+}
+//recursive findMin(). Returns Type object if found. otherwise returns NO_Type with -1
+const Type& BST::findMin(Node *NodeIn) const
+{
+	if (NodeIn == nullptr)
+		return NO_Type;
+	if (NodeIn->left == nullptr)
+		return NodeIn->NodeElement;
+	return findMin(NodeIn->left);
+}
+*/
 //simple greater than, less than function
 int BST::max(int left, int right)
 {

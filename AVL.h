@@ -50,8 +50,8 @@ public:
 	AVL(const AVL &);		// copy constructor
 	~AVL();					// destructor
 
-	// Type modifiers:
-	void clear();                // empty the Type
+	// Tree modifiers:
+	void clear();					  // empty the Tree
 	void insert(const Type& typeIn);  // insert element
 	void remove(const Type& typeIn);  // remove element
 };

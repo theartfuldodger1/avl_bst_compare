@@ -48,7 +48,7 @@ private:
 	void printType(Node *NodeIn, ostream& out = cout) const;
 	void remove(const Type &TypeIn, Node *&NodeIn);
 
-	//search functions
+	//RECURSIVE search functions
 	const Type& find(const Type &TypeIn, Node *NodeIn) const;
 	const Type& findMin(Node* NodeIn) const;
 	const Type& findmax(Node* NodeIn) const;
@@ -62,11 +62,13 @@ public:
 	BST();                  // default
 	BST(const BST &);		// copy constructor
 	~BST();					// destructor
-
+	
 	// Search methods:
 	const Type& find(const Type& typeIn) const;
 	const Type& findMin() const;
 	const Type& findmax() const;
+	
+	const Type& operator[](int);
 
 	//searches the entire tree for all occurrences of Type objects that match its Type argument.
 	//Does NOT have to etypeInamine every single Node in the tree every time it is called and 
@@ -76,10 +78,13 @@ public:
 	// Displaying the Type contents:
 	void print(ostream& out) const;
 
-	// Type modifiers:
-	void clear();                // empty the Type
+	// Tree modifiers:
+	void clear();                // empty the Tree
 	void insert(const Type& typeIn);  // insert element
 	void remove(const Type& typeIn);  // remove element
+
+	//Getter
+	int getHeight(int) const;
 
 	void printAll();//disabled internally.
 };
