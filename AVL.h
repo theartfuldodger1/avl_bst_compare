@@ -23,6 +23,20 @@ using namespace std;
 class AVL : public BST
 {
 private:
+	struct Node
+	{
+		Type NodeElement;
+		Node * left;
+		Node * right;
+		int height = 0;
+
+		//Node constructors :
+		Node(const Type &TypeIn, Node *lt, Node *rt, int ht)
+			: NodeElement{ TypeIn }, left{ lt }, right{ rt }, height{ ht } { }
+
+		Node(const Type &&TypeIn, Node *lt, Node *rt, int ht)
+			: NodeElement{ move(TypeIn) }, left{ lt }, right{ rt }, height{ ht } { }
+	};
 
 	Node *root;
 	Node* clone(Node *NodeIn) const;
@@ -50,8 +64,8 @@ public:
 	AVL(const AVL &);		// copy constructor
 	~AVL();					// destructor
 
-	// Type modifiers:
-	void clear();                // empty the Type
+	// Tree modifiers:
+	void clear();					  // empty the Tree
 	void insert(const Type& typeIn);  // insert element
 	void remove(const Type& typeIn);  // remove element
 };

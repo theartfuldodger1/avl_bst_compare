@@ -37,6 +37,7 @@ int main()
 void goSwitch()
 {
 	int param = 0;
+	vector<int> *ptrVec;
 	do
 	{	
 		AVL myAVL;
@@ -80,7 +81,6 @@ void goSwitch()
 				break;
 				case 3: //run 100k
 				{
-					
 					vector<int> randomVec(100000, -1);
 					insertIntoVector(randomVec);
 					insertOutput(myBST, myAVL, randomVec);

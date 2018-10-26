@@ -29,13 +29,13 @@ public:
 	friend bool operator<(const Type & t1, const Type & t2);
 	friend ostream& operator<< (ostream & os, const Type & t);
 
-	//Getters
+	//Getter
 	int getDigit();
 
 private:
 	int digit;
 };
-// A Type object indicating no Type etypeInists
+// A Type object indicating no Type exists with that digit value
 const Type  NO_Type(-1);
 
 #endif /* __Type_H__ */

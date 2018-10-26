@@ -27,12 +27,12 @@ BST::~BST()
 	delete root;
 }
 //Subscripting operator that returns a reference to the item. Must be a member function
-Type & BST::operator[](int i) //https://www.tutorialspoint.com/cplusplus/subscripting_operator_overloading.htm
-{
-	if (i > )
-	return typeIn;
-}
 // Search methods:
+const Type& BST::operator[](int param)
+{
+	Type temp(param);
+	return find(param, root);
+}
 //Recursive. returns as a Type. comparison
 const Type& BST::find(const Type &typeIn) const
 {
@@ -271,7 +271,6 @@ int BST::height(Node *NodeIn) const
 {
 	return NodeIn == nullptr ? -1 : NodeIn->height;
 }
-
 //simple greater than, less than function
 int BST::max(int left, int right)
 {
