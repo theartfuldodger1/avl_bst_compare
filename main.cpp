@@ -37,7 +37,6 @@ int main()
 void goSwitch()
 {
 	int param = 0;
-	vector<int> *ptrVec;
 	do
 	{	
 		AVL myAVL;
