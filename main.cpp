@@ -38,6 +38,11 @@ int main()
 //followed by lfunction calls based on that input
 void goSwitch()
 {
+	cout << right;
+	cout << "\n\tCordell Hurst"
+		<< "\n\tProject 2"
+		<< "\n\tCSCI 335, Software Design and Analysis III"
+		<< "\n\tProfessor Pavel Shostak" << endl;
 	int param = 0;
 	do
 	{	
